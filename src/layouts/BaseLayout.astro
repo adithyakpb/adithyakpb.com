@@ -27,6 +27,15 @@ const { title, description, image } = Astro.props;
     <BaseHead title={title} description={description} image={image} />
     <JsonLd />
     <Analytics />
+    <!-- Prevent FOUC: apply dark class before paint -->
+    <script is:inline>
+      (function() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
   <body class="min-h-screen">
     <Header />

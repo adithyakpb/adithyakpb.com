@@ -1,60 +1,61 @@
 ---
 import SectionHeading from '@/components/ui/SectionHeading.astro';
 import ScrollReveal from '@/components/ScrollReveal.astro';
+import Card from '@/components/ui/Card.astro';
+import Icon from '@/components/ui/Icon.astro';
+import Button from '@/components/ui/Button.astro';
 
 const username = 'adithyakpb';
-const accent = '1e40af';
 
-const statsUrl = `https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&hide_border=true&bg_color=ffffff&title_color=${accent}&icon_color=${accent}&text_color=1e293b&hide=contribs&hide_rank=true`;
-const langsUrl = `https://github-readme-stats.vercel.app/api/top-langs?username=${username}&layout=compact&hide_border=true&bg_color=ffffff&title_color=${accent}&text_color=1e293b&langs_count=8`;
-const chartUrl = `https://ghchart.rshah.org/${accent}/${username}`;
+const repos = [
+  { name: 'adithyakpb.com', desc: 'Personal portfolio site — Astro 5 + Tailwind CSS v4' },
+  { name: 'merit', desc: 'ML Experiment Toolkit — experiment tracking & deployment automation' },
+  { name: 'signalandnoise-blog', desc: 'signal and noise blog — Astro 5 + Ghost CMS' },
+  { name: 'speech-and-text-emotional-analysis', desc: 'Multimodal emotion detection from speech and text' },
+  { name: 'Music-Genre-Classficiation', desc: 'Music genre classification using deep learning' },
+  { name: 'PopMusicGenerator_Script', desc: 'Generative music composition with neural networks' },
+];
 ---
 
 <section id="github" class="py-20 bg-surface">
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <ScrollReveal>
       <SectionHeading
-        title="GitHub Activity"
-        subtitle="Open-source contributions and coding activity"
+        title="Open Source"
+        subtitle="Public repositories and side projects"
       />
     </ScrollReveal>
 
-    <div class="space-y-8">
-      <!-- Contribution chart -->
-      <ScrollReveal>
-        <div class="bg-white rounded-xl border border-border p-6 overflow-x-auto">
-          <img
-            src={chartUrl}
-            alt={`${username}'s GitHub contribution chart`}
-            class="w-full min-w-[700px]"
-            loading="lazy"
-          />
-        </div>
-      </ScrollReveal>
-
-      <!-- Stats cards -->
-      <div class="grid md:grid-cols-2 gap-6">
-        <ScrollReveal delay={100}>
-          <div class="bg-white rounded-xl border border-border p-6 flex items-center justify-center">
-            <img
-              src={statsUrl}
-              alt={`${username}'s GitHub stats`}
-              loading="lazy"
-              class="max-w-full"
-            />
-          </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      {repos.map((repo, i) => (
+        <ScrollReveal delay={i * 80}>
+          <a
+            href={`https://github.com/${username}/${repo.name}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block h-full"
+          >
+            <Card class="h-full">
+              <div class="flex items-start gap-3">
+                <Icon name="github" class="w-5 h-5 text-text-muted mt-0.5 shrink-0" />
+                <div>
+                  <h3 class="text-sm font-semibold text-primary font-mono">{repo.name}</h3>
+                  <p class="text-text-muted text-sm mt-1">{repo.desc}</p>
+                </div>
+              </div>
+            </Card>
+          </a>
         </ScrollReveal>
-        <ScrollReveal delay={200}>
-          <div class="bg-white rounded-xl border border-border p-6 flex items-center justify-center">
-            <img
-              src={langsUrl}
-              alt={`${username}'s top languages`}
-              loading="lazy"
-              class="max-w-full"
-            />
-          </div>
-        </ScrollReveal>
-      </div>
+      ))}
     </div>
+
+    <ScrollReveal>
+      <div class="text-center">
+        <Button href={`https://github.com/${username}`} variant="secondary">
+          <Icon name="github" class="w-4 h-4" />
+          View all on GitHub
+        </Button>
+      </div>
+    </ScrollReveal>
   </div>
 </section>

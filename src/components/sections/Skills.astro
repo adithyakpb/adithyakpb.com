@@ -17,7 +17,7 @@ import { skillGroups } from '@/data/skills';
     <div class="grid sm:grid-cols-2 gap-8">
       {skillGroups.map((group, i) => (
         <ScrollReveal delay={i * 100}>
-          <div class="bg-white rounded-xl border border-border p-6">
+          <div class="bg-card rounded-xl border border-border p-6">
             <h3 class="text-lg font-semibold text-text mb-4" style={`color: ${group.color}`}>
               {group.category}
             </h3>
