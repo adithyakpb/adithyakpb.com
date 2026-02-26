@@ -1,7 +1,9 @@
 ---
 import SectionHeading from '@/components/ui/SectionHeading.astro';
 import ScrollReveal from '@/components/ScrollReveal.astro';
-import { timelineEntries } from '@/data/timeline';
+import { fetchTimeline } from '@/data/timeline';
+
+const entries = await fetchTimeline();
 ---
 
 <section id="timeline" class="py-20 bg-surface">
@@ -13,44 +15,41 @@ import { timelineEntries } from '@/data/timeline';
       />
     </ScrollReveal>
 
-    <div class="relative">
-      <!-- Vertical line -->
-      <div class="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-border" aria-hidden="true"></div>
+    {entries.length > 0 ? (
+      <div class="relative">
+        <!-- Vertical line -->
+        <div class="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-border" aria-hidden="true" />
 
-      <div class="space-y-12">
-        {timelineEntries.map((entry, i) => (
-          <ScrollReveal delay={i * 100}>
-            <div class="relative pl-12 md:pl-20">
-              <!-- Dot on the line -->
-              <div class="absolute left-[13px] md:left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface" />
+        <div class="space-y-12">
+          {entries.map((entry, i) => (
+            <ScrollReveal delay={i * 100}>
+              <div class="relative pl-12 md:pl-20">
+                <!-- Dot on the line -->
+                <div class="absolute left-[13px] md:left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface" />
 
-              <div>
-                <span class="inline-block text-xs font-mono font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded mb-2">
-                  {entry.period}
-                </span>
-                <h3 class="text-lg font-semibold text-text">
-                  {entry.role}
-                  <span class="text-text-muted font-normal"> — {entry.org}</span>
-                </h3>
-                {entry.location && (
-                  <p class="text-sm text-text-light mt-0.5">{entry.location}</p>
-                )}
-                <p class="text-text-muted mt-2 leading-relaxed">{entry.description}</p>
-                {entry.highlights && (
-                  <ul class="mt-3 space-y-1">
-                    {entry.highlights.map((h) => (
-                      <li class="flex items-start gap-2 text-sm text-text-muted">
-                        <span class="text-primary mt-1.5 shrink-0">&#8226;</span>
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <div>
+                  <span class="inline-block text-xs font-mono font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded mb-2">
+                    {entry.displayDate || (entry.endYear ? `${entry.year} — ${entry.endYear}` : `${entry.year}`)}
+                  </span>
+                  {entry.group && (
+                    <span class="inline-block text-xs font-medium text-text-light bg-surface-alt px-2 py-0.5 rounded mb-2 ml-2">
+                      {entry.group}
+                    </span>
+                  )}
+                  <h3 class="text-lg font-semibold text-text">{entry.headline}</h3>
+                  {entry.text && (
+                    <p class="text-text-muted mt-2 leading-relaxed">{entry.text}</p>
+                  )}
+                </div>
               </div>
-            </div>
-          </ScrollReveal>
-        ))}
+            </ScrollReveal>
+          ))}
+        </div>
       </div>
-    </div>
+    ) : (
+      <div class="rounded-xl border border-border bg-card p-12 text-center">
+        <p class="text-text-muted">Timeline coming soon.</p>
+      </div>
+    )}
   </div>
 </section>
