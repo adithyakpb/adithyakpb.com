@@ -1,0 +1,47 @@
+---
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import ScrollReveal from '@/components/ScrollReveal.astro';
+import { getTimelineUrl } from '@/data/timeline';
+
+const timelineUrl = getTimelineUrl();
+---
+
+<section id="timeline" class="py-20 bg-surface">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <ScrollReveal>
+      <SectionHeading
+        title="Timeline"
+        subtitle="Career milestones and key experiences"
+      />
+    </ScrollReveal>
+
+    <ScrollReveal>
+      {timelineUrl ? (
+        <div class="rounded-xl border border-border overflow-hidden bg-white">
+          <iframe
+            src={timelineUrl}
+            width="100%"
+            height="650"
+            frameborder="0"
+            loading="lazy"
+            title="Career Timeline"
+          />
+        </div>
+      ) : (
+        <div class="rounded-xl border border-border bg-white p-12 text-center">
+          <p class="text-text-muted">
+            Timeline coming soon — powered by
+            <a
+              href="https://timeline.knightlab.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-primary hover:text-primary-dark underline"
+            >
+              TimelineJS
+            </a>
+          </p>
+        </div>
+      )}
+    </ScrollReveal>
+  </div>
+</section>

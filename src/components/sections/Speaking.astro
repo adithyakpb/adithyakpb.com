@@ -1,0 +1,25 @@
+---
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import SpeakingCard from '@/components/ui/SpeakingCard.astro';
+import ScrollReveal from '@/components/ScrollReveal.astro';
+import { speakingEvents } from '@/data/speaking';
+---
+
+<section id="speaking" class="py-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <ScrollReveal>
+      <SectionHeading
+        title="Speaking & Teaching"
+        subtitle="Conferences, workshops, and guest lectures"
+      />
+    </ScrollReveal>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {speakingEvents.map((event, i) => (
+        <ScrollReveal delay={i * 100}>
+          <SpeakingCard {...event} />
+        </ScrollReveal>
+      ))}
+    </div>
+  </div>
+</section>

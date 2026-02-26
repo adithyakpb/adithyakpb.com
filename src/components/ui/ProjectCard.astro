@@ -1,0 +1,50 @@
+---
+import Card from './Card.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  metrics: string[];
+  tags: string[];
+  link?: string;
+}
+
+const { title, description, metrics, tags, link } = Astro.props;
+---
+
+<Card>
+  <div class="flex flex-col h-full">
+    <h3 class="text-lg font-semibold text-text mb-2">{title}</h3>
+    <p class="text-text-muted text-sm mb-4 flex-1">{description}</p>
+
+    {metrics.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-4">
+        {metrics.map((metric) => (
+          <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-primary/5 text-primary text-xs font-semibold">
+            {metric}
+          </span>
+        ))}
+      </div>
+    )}
+
+    <div class="flex flex-wrap gap-1.5 mb-4">
+      {tags.map((tag) => (
+        <span class="px-2 py-0.5 rounded bg-surface text-text-muted text-xs font-mono">
+          {tag}
+        </span>
+      ))}
+    </div>
+
+    {link && (
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1 text-sm text-primary hover:text-primary-dark transition-colors"
+      >
+        View project <Icon name="external" class="w-4 h-4" />
+      </a>
+    )}
+  </div>
+</Card>

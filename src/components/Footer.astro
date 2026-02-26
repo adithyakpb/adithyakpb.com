@@ -1,0 +1,95 @@
+---
+import Icon from './ui/Icon.astro';
+
+const socialLinks = [
+  { href: 'https://github.com/adithyakpb', icon: 'github', label: 'GitHub' },
+  { href: 'https://linkedin.com/in/adithyakpb', icon: 'linkedin', label: 'LinkedIn' },
+  { href: 'https://signalandnoise.blog', icon: 'blog', label: 'Blog' },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer id="contact" class="bg-surface border-t border-border">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Contact form -->
+      <div>
+        <h2 class="text-2xl font-bold text-text mb-2">Get in Touch</h2>
+        <p class="text-text-muted mb-6">Have a question or want to work together?</p>
+        <form
+          action="https://formspree.io/f/xpwdjqzb"
+          method="POST"
+          class="space-y-4"
+        >
+          <div>
+            <label for="name" class="block text-sm font-medium text-text mb-1">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="w-full px-4 py-2 rounded-lg border border-border bg-white text-text placeholder-text-light focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+              placeholder="Your name"
+            />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium text-text mb-1">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full px-4 py-2 rounded-lg border border-border bg-white text-text placeholder-text-light focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+              placeholder="you@example.com"
+            />
+          </div>
+          <div>
+            <label for="message" class="block text-sm font-medium text-text mb-1">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              required
+              class="w-full px-4 py-2 rounded-lg border border-border bg-white text-text placeholder-text-light focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-none"
+              placeholder="Your message..."
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="inline-flex items-center gap-2 px-6 py-2.5 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors"
+          >
+            Send Message
+          </button>
+        </form>
+      </div>
+
+      <!-- Info -->
+      <div class="flex flex-col justify-between">
+        <div>
+          <h3 class="text-lg font-semibold text-text mb-4">Connect</h3>
+          <div class="flex gap-4 mb-8">
+            {socialLinks.map(({ href, icon, label }) => (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="p-3 rounded-lg bg-white border border-border text-text-muted hover:text-primary hover:border-primary/30 transition-colors"
+                aria-label={label}
+              >
+                <Icon name={icon} class="w-5 h-5" />
+              </a>
+            ))}
+          </div>
+          <p class="text-text-muted text-sm">
+            Based in <strong>New York, NY</strong> &amp; <strong>Bengaluru, India</strong>
+          </p>
+        </div>
+
+        <p class="text-text-light text-sm mt-8">
+          &copy; {currentYear} Adithya KP. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

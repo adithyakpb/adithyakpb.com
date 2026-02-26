@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adithyakpb.com/sitemap-index.xml

@@ -1,0 +1,39 @@
+---
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': 'https://adithyakpb.com/#person',
+      name: 'Adithya KP',
+      jobTitle: 'Machine Learning Engineer',
+      url: 'https://adithyakpb.com',
+      sameAs: [
+        'https://github.com/adithyakpb',
+        'https://linkedin.com/in/adithyakpb',
+        'https://signalandnoise.blog',
+      ],
+      knowsAbout: [
+        'Machine Learning',
+        'Generative AI',
+        'Large Language Models',
+        'RAG Systems',
+        'MLOps',
+        'Python',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://adithyakpb.com/#website',
+      url: 'https://adithyakpb.com',
+      name: 'Adithya KP — Portfolio',
+      author: { '@id': 'https://adithyakpb.com/#person' },
+    },
+  ],
+};
+---
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(jsonLd)}
+/>

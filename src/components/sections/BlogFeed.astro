@@ -1,0 +1,48 @@
+---
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import BlogPostCard from '@/components/ui/BlogPostCard.astro';
+import Button from '@/components/ui/Button.astro';
+import ScrollReveal from '@/components/ScrollReveal.astro';
+import { fetchBlogPosts } from '@/lib/rss';
+import { formatDate } from '@/lib/utils';
+
+const posts = await fetchBlogPosts(3);
+---
+
+<section id="blog" class="py-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <ScrollReveal>
+      <SectionHeading
+        title="Latest from the Blog"
+        subtitle="Writing about ML, mathematics, AI systems, and technology"
+      />
+    </ScrollReveal>
+
+    {posts.length > 0 ? (
+      <div class="grid md:grid-cols-3 gap-6 mb-8">
+        {posts.map((post, i) => (
+          <ScrollReveal delay={i * 100}>
+            <BlogPostCard
+              title={post.title}
+              link={post.link}
+              date={post.date ? formatDate(post.date) : ''}
+              snippet={post.snippet}
+            />
+          </ScrollReveal>
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12 mb-8">
+        <p class="text-text-muted">Check out my blog for the latest posts.</p>
+      </div>
+    )}
+
+    <ScrollReveal>
+      <div class="text-center">
+        <Button href="https://signalandnoise.blog" variant="secondary">
+          Visit signal and noise &rarr;
+        </Button>
+      </div>
+    </ScrollReveal>
+  </div>
+</section>

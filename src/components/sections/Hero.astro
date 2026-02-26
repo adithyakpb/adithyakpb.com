@@ -1,0 +1,65 @@
+---
+import Button from '@/components/ui/Button.astro';
+import Icon from '@/components/ui/Icon.astro';
+---
+
+<section id="about" class="py-24 sm:py-32">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-3 gap-12 items-center">
+      <div class="lg:col-span-2">
+        <p class="text-primary font-medium mb-2">Hi, I'm</p>
+        <h1 class="text-4xl sm:text-5xl font-bold text-text mb-4">
+          Adithya KP
+        </h1>
+        <p class="text-xl sm:text-2xl text-text-muted font-medium mb-4">
+          Machine Learning Engineer
+          <span class="text-primary">&mdash;</span>
+          Generative AI &amp; LLM Specialist
+        </p>
+        <p class="flex items-center gap-1.5 text-text-muted mb-6">
+          <Icon name="location" class="w-4 h-4" />
+          New York, NY &middot; Bengaluru, India
+        </p>
+        <p class="text-text-muted text-lg leading-relaxed mb-8 max-w-2xl">
+          I build production AI systems — from enterprise RAG platforms serving thousands
+          of users to multi-tenant agentic AI architectures. I care deeply about bridging
+          the gap between ML research and reliable, scalable software.
+        </p>
+
+        <div class="flex flex-wrap gap-3">
+          <Button href="/resume.pdf" variant="primary">
+            <Icon name="download" class="w-4 h-4" />
+            Resume
+          </Button>
+          <Button href="https://github.com/adithyakpb" variant="secondary">
+            <Icon name="github" class="w-4 h-4" />
+            GitHub
+          </Button>
+          <Button href="https://linkedin.com/in/adithyakpb" variant="secondary">
+            <Icon name="linkedin" class="w-4 h-4" />
+            LinkedIn
+          </Button>
+          <Button href="https://signalandnoise.blog" variant="secondary">
+            <Icon name="blog" class="w-4 h-4" />
+            Blog
+          </Button>
+        </div>
+      </div>
+
+      <!-- Photo placeholder -->
+      <div class="hidden lg:flex justify-center">
+        <div class="w-64 h-64 rounded-2xl bg-surface-alt border border-border flex items-center justify-center overflow-hidden">
+          <img
+            src="/images/photo.jpg"
+            alt="Adithya KP"
+            class="w-full h-full object-cover"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+          />
+          <div class="hidden items-center justify-center w-full h-full text-text-light text-sm">
+            Photo
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

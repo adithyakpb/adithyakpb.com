@@ -1,0 +1,15 @@
+---
+interface Props {
+  label: string;
+  color?: string;
+}
+
+const { label, color } = Astro.props;
+---
+
+<span
+  class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border"
+  style={color ? `color: ${color}; border-color: ${color}33; background-color: ${color}0d` : undefined}
+>
+  {label}
+</span>
